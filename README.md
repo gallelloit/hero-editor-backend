@@ -107,6 +107,8 @@ I am Pedro Gallello Bonino, with main dedication: Software Project Manager at In
 
 _**Any improvement or comment about the project is always welcome! As well as others shared their code publicly I want to share mine! Thanks!**_
 
+_**Thanks to Carlos Becerra (carlosCharz) whose springdatacouchbase project was the seed for this one**_
+
 ## License
 ```javas
 Copyright 2017 Pedro Gallello Bonino
