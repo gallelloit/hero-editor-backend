@@ -1,4 +1,4 @@
-# Hero Editor Backend
+# Hero Editor Backend (Spring Data Couchbase Rest API)
 
 ## Previous considerations
 
