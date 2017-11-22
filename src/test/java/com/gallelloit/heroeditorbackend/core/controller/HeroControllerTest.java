@@ -137,12 +137,12 @@ public class HeroControllerTest {
 		mockMvc.perform(get("/heroes"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(CONTENT_TYPE))
-				.andExpect(jsonPath("$", Matchers.hasSize(4)));
+				.andExpect(jsonPath("$", Matchers.hasSize(3)));
 	}
 
 	@Test
 	public void getExistingHeroByName() throws Exception {
-		mockMvc.perform(get("/heroes/findByName/arl"))
+		mockMvc.perform(get("/heroes?name=arl"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(CONTENT_TYPE))
 				.andExpect(jsonPath("$", Matchers.hasSize(1)));

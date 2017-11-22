@@ -3,6 +3,7 @@ package com.gallelloit.heroeditorbackend.core.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
 import com.gallelloit.heroeditorbackend.core.service.HeroService;
@@ -10,14 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * User REST Controller
@@ -26,7 +20,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  *
  */
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/heroes")
 public class HeroController {
 
@@ -83,10 +77,12 @@ public class HeroController {
 		return heroService.findAll();
 	}
 
-	@RequestMapping(value = "/findByName/{heroName}", method = RequestMethod.GET)
+	@RequestMapping(value = "",
+			params={"name"},
+			method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<HeroDoc> findByName(@PathVariable String heroName) {
+	public List<HeroDoc> findByName(@RequestParam(value="name") String heroName) {
 		logger.info("Find hero by name: {}", heroName);
 		return heroService.findHeroesByName(heroName);
 	}
