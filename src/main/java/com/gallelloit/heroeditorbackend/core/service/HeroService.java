@@ -3,6 +3,8 @@ package com.gallelloit.heroeditorbackend.core.service;
 import java.util.List;
 
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
+
 
 /**
  * Interface for the User Service Implementation
@@ -29,4 +31,6 @@ public interface HeroService {
 	Boolean exists(Long id);
 
 	List<HeroDoc> findAll();
+
+	void addSuperpower(Long id, Superpower superpower);
 }

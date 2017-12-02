@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.gallelloit.heroeditorbackend.core.dao.HeroRepository;
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
 import com.gallelloit.heroeditorbackend.core.exception.ApiException;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -36,11 +37,15 @@ public class HeroServiceImplTest {
 
 	private HeroDoc heroDoc;
 
+	private Superpower superpower;
+
 	@Before
 	public void init() {
 		heroDoc = new HeroDoc();
 		heroDoc.setName("Pedro");
 		heroDoc.setId(HERO_ONE_ID);
+
+		superpower = new Superpower("Fly");
 	}
 	
 
@@ -129,5 +134,15 @@ public class HeroServiceImplTest {
 		Mockito.verifyNoMoreInteractions(repoMock);
 	}
 
+	public void addSuperPowerToExistingHero(){
+		// Data preparation
+		Mockito.when(repoMock.findByName("Pedro")).thenReturn(heroDoc);
 
+		// Method call
+		heroService.addSuperpower(heroDoc.getId(), superpower);
+
+		// Verification
+		Mockito.verify(repoMock, Mockito.times(1)).findByName(Mockito.anyString());
+		Mockito.verifyNoMoreInteractions(repoMock);
+	}
 }

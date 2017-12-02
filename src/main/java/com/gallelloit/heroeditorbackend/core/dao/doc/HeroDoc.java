@@ -1,12 +1,15 @@
 package com.gallelloit.heroeditorbackend.core.dao.doc;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.gallelloit.heroeditorbackend.core.util.Util;
 import org.springframework.data.couchbase.core.mapping.Document;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
+import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
 
 /**
  * Represents a user doc from Couchbase
@@ -22,10 +25,12 @@ public class HeroDoc implements Serializable {
 
 	@Id
 	private String key;
+
 	@Field
 	private Long id;
 	@Field
 	private String name;
+	@Field List<Superpower> superpowersList;
 
 	public HeroDoc() {
 	}
@@ -71,6 +76,21 @@ public class HeroDoc implements Serializable {
 		this.name = name;
 	}
 
+	public List<Superpower> getSuperpowersList() {
+		return superpowersList;
+	}
+
+	public void setSuperpowersList(List<Superpower> superpowersList) {
+		this.superpowersList = superpowersList;
+	}
+
+	public void addSuperpower (Superpower superpower){
+		if (Util.isNullOrEmpty(this.superpowersList)){
+			this.superpowersList = new ArrayList<Superpower>();
+		}
+		this.superpowersList.add(superpower);
+	}
+
 	@Override
 	public int hashCode() {
 		int hashed = 1;
@@ -92,5 +112,4 @@ public class HeroDoc implements Serializable {
 		HeroDoc other = (HeroDoc) obj;
 		return this.hashCode() == other.hashCode();
 	}
-
 }

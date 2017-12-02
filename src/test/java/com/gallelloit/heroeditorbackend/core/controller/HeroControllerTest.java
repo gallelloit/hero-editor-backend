@@ -15,6 +15,7 @@ import java.util.Arrays;
 import com.gallelloit.heroeditorbackend.core.EntryPoint;
 import com.gallelloit.heroeditorbackend.core.dao.HeroRepository;
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
 import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Assert;
@@ -132,7 +133,17 @@ public class HeroControllerTest {
                .andExpect(status().isOk());
     }
 
-    @Test
+	@Test
+	public void addSuperpower() throws Exception{
+		Superpower superpowerFly = new Superpower("Fly");
+		mockMvc.perform(put("/heroes/addSuperpower/" + HERO_THREE_ID)
+				.contentType(CONTENT_TYPE)
+				.content(json(superpowerFly)))
+				.andExpect(status().isOk());
+	}
+
+
+	@Test
 	public void findAll() throws Exception{
 		mockMvc.perform(get("/heroes"))
 				.andExpect(status().isOk())

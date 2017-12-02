@@ -3,6 +3,7 @@ package com.gallelloit.heroeditorbackend.core.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
 import com.gallelloit.heroeditorbackend.core.exception.ApiException;
 import com.gallelloit.heroeditorbackend.core.exception.ErrorType;
 import com.gallelloit.heroeditorbackend.core.dao.HeroRepository;
@@ -84,5 +85,15 @@ public class HeroServiceImpl implements HeroService {
 	@Override
 	public HeroDoc findByName(String heroName) {
 		return heroRepository.findByName(heroName);
+	}
+
+	public void addSuperpower(Long id, Superpower superpower) {
+		// The user should exist
+		final HeroDoc existingHero = this.findById(id);
+		if (!Util.isNullOrEmpty(existingHero.getName())) {
+			existingHero.addSuperpower(superpower);
+		}
+		// Save
+		heroRepository.save(existingHero);
 	}
 }

@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
 import com.gallelloit.heroeditorbackend.core.service.HeroService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,4 +88,11 @@ public class HeroController {
 		return heroService.findHeroesByName(heroName);
 	}
 
+	@RequestMapping(value = "/addSuperpower/{heroId}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void addSuperpower(@PathVariable Long heroId, @Valid @RequestBody Superpower superpower) {
+		logger.info("Add superpower {} to hero {}", superpower.getName(), heroId);
+		heroService.addSuperpower(heroId, superpower);
+	}
 }
