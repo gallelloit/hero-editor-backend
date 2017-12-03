@@ -91,6 +91,12 @@ public class HeroDoc implements Serializable {
 		this.superpowersList.add(superpower);
 	}
 
+	public void removeSuperpower (Superpower superpower){
+		if (!Util.isNullOrEmpty(this.superpowersList)){
+			this.superpowersList.remove(superpower);
+		}
+	}
+
 	@Override
 	public int hashCode() {
 		int hashed = 1;

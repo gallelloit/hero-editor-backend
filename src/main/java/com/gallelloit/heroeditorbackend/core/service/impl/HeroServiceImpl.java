@@ -96,4 +96,14 @@ public class HeroServiceImpl implements HeroService {
 		// Save
 		heroRepository.save(existingHero);
 	}
+
+	public void removeSuperpower(Long id, Superpower superpower) {
+		// The user should exist
+		final HeroDoc existingHero = this.findById(id);
+		if (!Util.isNullOrEmpty(existingHero.getName())) {
+			existingHero.removeSuperpower(superpower);
+		}
+		// Save
+		heroRepository.save(existingHero);
+	}
 }

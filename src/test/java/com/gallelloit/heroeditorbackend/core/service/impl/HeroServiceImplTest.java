@@ -134,12 +134,25 @@ public class HeroServiceImplTest {
 		Mockito.verifyNoMoreInteractions(repoMock);
 	}
 
-	public void addSuperPowerToExistingHero(){
+	public void addSuperpowerToExistingHero(){
+		// Data preparation
+		Mockito.when(repoMock.findByName("Pedro")).thenReturn(heroDoc);
+		heroDoc.addSuperpower(superpower);
+
+		// Method call
+		heroService.addSuperpower(heroDoc.getId(), superpower);
+
+		// Verification
+		Mockito.verify(repoMock, Mockito.times(1)).findByName(Mockito.anyString());
+		Mockito.verifyNoMoreInteractions(repoMock);
+	}
+
+	public void removeSuperpowerToExistingHero(){
 		// Data preparation
 		Mockito.when(repoMock.findByName("Pedro")).thenReturn(heroDoc);
 
 		// Method call
-		heroService.addSuperpower(heroDoc.getId(), superpower);
+		heroService.removeSuperpower(heroDoc.getId(), superpower);
 
 		// Verification
 		Mockito.verify(repoMock, Mockito.times(1)).findByName(Mockito.anyString());

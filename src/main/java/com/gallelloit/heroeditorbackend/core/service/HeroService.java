@@ -33,4 +33,6 @@ public interface HeroService {
 	List<HeroDoc> findAll();
 
 	void addSuperpower(Long id, Superpower superpower);
+
+	void removeSuperpower(Long id, Superpower superpower);
 }

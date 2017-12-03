@@ -95,4 +95,13 @@ public class HeroController {
 		logger.info("Add superpower {} to hero {}", superpower.getName(), heroId);
 		heroService.addSuperpower(heroId, superpower);
 	}
+
+	@RequestMapping(value = "/removeSuperpower/{heroId}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void removeSuperpower(@PathVariable Long heroId, @Valid @RequestBody Superpower superpower) {
+		logger.info("Remove superpower {} to hero {}", superpower.getName(), heroId);
+		heroService.removeSuperpower(heroId, superpower);
+	}
+
 }

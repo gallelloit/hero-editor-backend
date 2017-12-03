@@ -142,6 +142,15 @@ public class HeroControllerTest {
 				.andExpect(status().isOk());
 	}
 
+	@Test
+	public void removeSuperpower() throws Exception{
+		Superpower superpowerFly = new Superpower("Fly");
+		mockMvc.perform(put("/heroes/removeSuperpower/" + HERO_THREE_ID)
+				.contentType(CONTENT_TYPE)
+				.content(json(superpowerFly)))
+				.andExpect(status().isOk());
+	}
+
 
 	@Test
 	public void findAll() throws Exception{
