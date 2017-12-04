@@ -37,7 +37,7 @@ public class HeroServiceImplTest {
 
 	private HeroDoc heroDoc;
 
-	private Superpower superpower;
+	private Superpower superpower1, superpower2;
 
 	@Before
 	public void init() {
@@ -45,7 +45,8 @@ public class HeroServiceImplTest {
 		heroDoc.setName("Pedro");
 		heroDoc.setId(HERO_ONE_ID);
 
-		superpower = new Superpower("Fly");
+		superpower1 = new Superpower("Fly");
+		superpower2 = new Superpower("Speed");
 	}
 	
 
@@ -137,14 +138,17 @@ public class HeroServiceImplTest {
 	public void addSuperpowerToExistingHero(){
 		// Data preparation
 		Mockito.when(repoMock.findByName("Pedro")).thenReturn(heroDoc);
-		heroDoc.addSuperpower(superpower);
+		heroDoc.addSuperpower(superpower1);
 
 		// Method call
-		heroService.addSuperpower(heroDoc.getId(), superpower);
+		heroService.addSuperpower(heroDoc.getId(), superpower1);
+		heroService.addSuperpower(heroDoc.getId(), superpower2);
 
 		// Verification
 		Mockito.verify(repoMock, Mockito.times(1)).findByName(Mockito.anyString());
 		Mockito.verifyNoMoreInteractions(repoMock);
+
+		Assert.assertEquals(2, heroDoc.getSuperpowersList().size());
 	}
 
 	public void removeSuperpowerToExistingHero(){
@@ -152,10 +156,14 @@ public class HeroServiceImplTest {
 		Mockito.when(repoMock.findByName("Pedro")).thenReturn(heroDoc);
 
 		// Method call
-		heroService.removeSuperpower(heroDoc.getId(), superpower);
+		heroService.addSuperpower(heroDoc.getId(), superpower1);
+		heroService.addSuperpower(heroDoc.getId(), superpower2);
+
+		heroService.removeSuperpower(heroDoc.getId(), superpower1);
 
 		// Verification
 		Mockito.verify(repoMock, Mockito.times(1)).findByName(Mockito.anyString());
 		Mockito.verifyNoMoreInteractions(repoMock);
+		Assert.assertEquals(1, heroDoc.getSuperpowersList().size());
 	}
 }
