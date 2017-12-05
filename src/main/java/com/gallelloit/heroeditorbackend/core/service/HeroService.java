@@ -35,4 +35,6 @@ public interface HeroService {
 	void addSuperpower(Long id, Superpower superpower);
 
 	void removeSuperpower(Long id, Superpower superpower);
+
+	List<Superpower> getSuperpowersByHeroId(Long heroId);
 }

@@ -1,5 +1,6 @@
 package com.gallelloit.heroeditorbackend.core.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,5 +106,15 @@ public class HeroServiceImpl implements HeroService {
 		}
 		// Save
 		heroRepository.save(existingHero);
+	}
+
+	public List<Superpower> getSuperpowersByHeroId(Long heroId){
+		final HeroDoc existingHero = this.findById(heroId);
+
+		if (!Util.isNullOrEmpty(existingHero.getName())){
+			return existingHero.getSuperpowersList();
+		}
+
+		return new ArrayList<Superpower>();
 	}
 }

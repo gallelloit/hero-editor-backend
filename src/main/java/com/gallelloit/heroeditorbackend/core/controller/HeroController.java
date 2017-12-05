@@ -104,4 +104,11 @@ public class HeroController {
 		heroService.removeSuperpower(heroId, superpower);
 	}
 
+	@RequestMapping(value = "/getSuperpowers/{heroId}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Superpower> getSuperpowersByHeroId(@PathVariable Long heroId){
+		logger.info("Get superpowers of hero {}", heroId);
+		return heroService.getSuperpowersByHeroId(heroId);
+	}
 }

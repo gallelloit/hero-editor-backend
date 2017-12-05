@@ -26,7 +26,6 @@ public interface HeroRepository extends CrudRepository<HeroDoc, String> {
 	@Query("#{#n1ql.selectEntity} WHERE #{#n1ql.filter} AND CONTAINS(name, $1)")
 	List<HeroDoc> findHeroesByName(String heroName);
 
-
 	// This method is a query method defined in the interface. In addition to query methods, query derivation for both count and delete queries, is available.
 	HeroDoc findByName (String heroName);
 }
