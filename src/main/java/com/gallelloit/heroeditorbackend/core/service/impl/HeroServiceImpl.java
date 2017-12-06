@@ -59,6 +59,7 @@ public class HeroServiceImpl implements HeroService {
 		}
 		// Save
 		heroRepository.save(existingUser);
+		//return existingUser;
 	}
 
 	@Override
@@ -112,7 +113,7 @@ public class HeroServiceImpl implements HeroService {
 		final HeroDoc existingHero = this.findById(heroId);
 
 		if (!Util.isNullOrEmpty(existingHero.getName())){
-			return existingHero.getSuperpowersList();
+			return existingHero.getSuperpowers();
 		}
 
 		return new ArrayList<Superpower>();

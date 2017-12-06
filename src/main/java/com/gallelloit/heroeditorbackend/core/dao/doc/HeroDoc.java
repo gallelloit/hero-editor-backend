@@ -9,7 +9,6 @@ import org.springframework.data.couchbase.core.mapping.Document;
 
 import com.couchbase.client.java.repository.annotation.Field;
 import com.couchbase.client.java.repository.annotation.Id;
-import org.springframework.data.couchbase.core.mapping.id.GeneratedValue;
 
 /**
  * Represents a user doc from Couchbase
@@ -30,7 +29,7 @@ public class HeroDoc implements Serializable {
 	private Long id;
 	@Field
 	private String name;
-	@Field List<Superpower> superpowersList;
+	@Field List<Superpower> superpowers;
 
 	public HeroDoc() {
 	}
@@ -76,24 +75,24 @@ public class HeroDoc implements Serializable {
 		this.name = name;
 	}
 
-	public List<Superpower> getSuperpowersList() {
-		return superpowersList;
+	public List<Superpower> getSuperpowers() {
+		return superpowers;
 	}
 
-	public void setSuperpowersList(List<Superpower> superpowersList) {
-		this.superpowersList = superpowersList;
+	public void setSuperpowers(List<Superpower> superpowers) {
+		this.superpowers = superpowers;
 	}
 
 	public void addSuperpower (Superpower superpower){
-		if (Util.isNullOrEmpty(this.superpowersList)){
-			this.superpowersList = new ArrayList<Superpower>();
+		if (Util.isNullOrEmpty(this.superpowers)){
+			this.superpowers = new ArrayList<Superpower>();
 		}
-		this.superpowersList.add(superpower);
+		this.superpowers.add(superpower);
 	}
 
 	public void removeSuperpower (Superpower superpower){
-		if (!Util.isNullOrEmpty(this.superpowersList)){
-			this.superpowersList.remove(superpower);
+		if (!Util.isNullOrEmpty(this.superpowers)){
+			this.superpowers.remove(superpower);
 		}
 	}
 
