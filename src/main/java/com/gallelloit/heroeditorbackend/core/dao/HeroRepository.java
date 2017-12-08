@@ -3,6 +3,7 @@ package com.gallelloit.heroeditorbackend.core.dao;
 import java.util.List;
 
 import com.gallelloit.heroeditorbackend.core.dao.doc.HeroDoc;
+import com.gallelloit.heroeditorbackend.core.dao.doc.Superpower;
 import org.springframework.data.couchbase.core.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -28,4 +29,8 @@ public interface HeroRepository extends CrudRepository<HeroDoc, String> {
 
 	// This method is a query method defined in the interface. In addition to query methods, query derivation for both count and delete queries, is available.
 	HeroDoc findByName (String heroName);
+
+	//@Query("SELECT supeskrpowers WHERE #{#n1ql.filter} AND id = $1")
+	@Query("SELECT superpowers WHERE #{#n1ql.filter} AND id = $1")
+	List<Superpower> findSuperpowersByHeroId(Long heroId);
 }

@@ -59,7 +59,6 @@ public class HeroServiceImpl implements HeroService {
 		}
 		// Save
 		heroRepository.save(existingUser);
-		//return existingUser;
 	}
 
 	@Override
