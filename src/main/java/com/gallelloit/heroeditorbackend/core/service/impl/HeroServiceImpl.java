@@ -56,6 +56,7 @@ public class HeroServiceImpl implements HeroService {
 		final HeroDoc existingUser = this.findById(id);
 		if (!Util.isNullOrEmpty(user.getName())) {
 			existingUser.setName(user.getName());
+			existingUser.setSuperpowers(user.getSuperpowers());
 		}
 		// Save
 		heroRepository.save(existingUser);
@@ -116,5 +117,18 @@ public class HeroServiceImpl implements HeroService {
 		}
 
 		return new ArrayList<Superpower>();
+	}
+
+	public void removeSuperpower(Long heroId, String superpower){
+		// fetch Hero
+		final HeroDoc existingHero = this.findById(heroId);
+
+		// compose and remove superpower
+		if (!Util.isNullOrEmpty(existingHero.getName())){
+			existingHero.removeSuperpower(new Superpower(superpower));
+		}
+
+		// Save
+		heroRepository.save(existingHero);
 	}
 }
