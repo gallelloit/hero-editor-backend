@@ -37,6 +37,4 @@ public interface HeroService {
 	void removeSuperpower(Long id, Superpower superpower);
 
 	List<Superpower> getSuperpowersByHeroId(Long heroId);
-
-	void removeSuperpower(Long heroId, String superpower);
 }
